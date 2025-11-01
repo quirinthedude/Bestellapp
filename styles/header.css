@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    height: 72px;
+    padding: 8px;
+    border-style: none;
+    box-shadow: var(--shadow)
+}
+
+header img {
+    height: 56px;
+    width: auto;
+}
+
+.menu-btn::before {
+  content: "\2630";
+}
+
+.country-btn {
+    height: 36px;
+    width: auto;
+}
+
+.header-nav-bar {
+    display: flex;
+    align-items: center;
+}
+

@@ -1,0 +1,81 @@
+main {
+    width: 100vw;
+    /* max-width: var(--max); */
+    display: flex;
+    gap: var(--gap);
+
+}
+
+.hero-img {
+    height: 500px;
+    width: min(100%, calc(100vw - var(--cart) - var(--gap)));
+    /* width: min(100%, calc(var(--max) - var(--cart) - var(--gap))); */
+    margin-block: 16px 24px;
+}
+
+.left {
+    width: 100vw;
+    flex: 1 1 auto;
+}
+
+
+/**************************************************************************************/
+/* product-content                                                                    */
+/**************************************************************************************/
+.content {
+    max-width: var(--content);
+    width: 90%;
+    margin-inline: auto;
+}
+
+.info-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  cursor: help;
+}
+ .restaurant {
+    display: flex;
+    justify-content: space-between;
+ }
+ 
+.search-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;                  
+  border: 1px solid var(--muted);
+  border-radius: 16px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-menu svg {
+  flex: 0 0 auto;
+  color: var(--text);  
+}
+
+.search-menu input {
+  flex: 1;                   /* takes rest of space*/
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: transparent;
+}
+
+/**************************************************************************************/
+/* cart                                                                               */
+/**************************************************************************************/
+
+.cart {
+    padding-top: 16px;
+    flex: 0 0 var(--cart);
+}

@@ -1,0 +1,15 @@
+{
+  "id": "mama-mia.basel",
+  "brand": "eat.ch",
+  "name": "Trattoria Mama Mia",
+  "address": { "street": "Musterweg 1", "city": "Basel", "zip": "4051" },
+  "opening": { "mon_fri": "11:00-22:00", "sat_sun": "12:00-23:00" },
+  "delivery": { "feeCents": 390, "etaMin": 30, "etaMax": 45, "minOrderCents": 2000 },
+  "rating": { "stars": 4.7, "count": 1280 },
+  "currency": "CHF",
+  "assets": {
+    "hero": "assets/img/hero/mama-mia.jpg",
+    "logo": "assets/logo/Bestell App- Logo.svg"
+  },
+  "updatedAt": "2025-10-26T08:00:00Z"
+}

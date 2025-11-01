@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Bestell App – Demo Restaurant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="assets/favicons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon.png">
+
+  <!-- Fonts (Inter + Poppins) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/standart.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+  <header>
+    <a>
+      <img src="./assets/logo/Bestell-App-Logo-orange.svg" alt="Bestellapplogo">
+    </a>
+    <div class="header-nav-bar">
+      <button><img class="country-btn" src="./assets/icons/swiss_blur.png" alt="country"></button>
+      <button class="menu-btn"></button>
+    </div>
+  </header>
+  <main>
+    <section class="left" id="hero">
+      <img class="hero-img" src="./assets/img/hero_mammamia.png" alt="Trattoria Mama Mia">
+      <div class="content">
+        <div class="restaurant">
+          <h1>Mama Mia Trattoria</h1>
+          <span class="info-icon">i</span>
+
+        </div>
+        <p class="muted -dist8px" id="infos">⭐ 4.7 · Italienisch · Lieferzeit ~30–45 min · Lieferkosten CHF 3.90</p>
+        <p class="search-menu -dist16px">
+          <!-------------- SVG-Lupe (Find-Icon)---------------------------------------->
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Suche">
+            <title>Suche</title>
+            <circle cx="11" cy="11" r="7" />
+            <line x1="16.5" y1="16.5" x2="21" y2="21" />
+          </svg>
+          <!--------------------------------------------------------------------------->
+          <input id="find-menu" type="text" name="" placeholder="Suche Mama Mia Trattoria">
+        </p>
+      </div>
+    </section>
+    <section class="cart">
+      <h2>Warenkorb</h2>
+    </section>
+  </main>
+
+<script type="module" src="./scripts/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+/* ========== PROJECT STYLES: visual style & layout ========== */
+
+
+ul {
+  list-style-type: none;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+}
+
+.btn:active,
+.btn:focus {
+  background: var(--accent-dark);
+  outline: none;
+}
+
