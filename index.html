@@ -37,7 +37,7 @@
     </div>
   </header>
   <main>
-    <section class="left" id="hero">
+    <section class="left">
       <img class="hero-img" src="./assets/img/hero_mammamia.png" alt="Trattoria Mama Mia">
       <div class="content">
         <div class="restaurant">
@@ -57,14 +57,37 @@
           <!--------------------------------------------------------------------------->
           <input id="find-menu" type="text" name="" placeholder="Suche Mama Mia Trattoria">
         </p>
+        <p class="flex -dist16px">
+          <a href="#" class="btn">Pizza</a>
+          <a href="#" class="btn">Pasta</a>
+          <a href="#" class="btn">Salat</a>
+        </p>
+        <div id="pizza" class="-dist16px">
+          <h2>Pizza</h2>
+          <div class="flex-around">
+            <div>
+              <h3>Pizza Margherita</h3>
+              <p> <b>CHF 12.50</b></p>
+              <p>Tomate, Mozzarella, Basilikum.</p>
+              <p>Ø 32 cm</p>
+
+            </div>
+            <div >
+              <img class="menu-img" src="./assets/img/pizza/margarita.png" alt="Pizza Margherita">
+            </div>
+          </div>
+        </div>
+        <div id="pasta"></div>
+        <div id="salat"></div>
+      </div>
       </div>
     </section>
-    <section class="cart">
+    <aside class="cart">
       <h2>Warenkorb</h2>
-    </section>
+    </aside>
   </main>
 
-<script type="module" src="./scripts/main.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
 </body>
 
 </html>
