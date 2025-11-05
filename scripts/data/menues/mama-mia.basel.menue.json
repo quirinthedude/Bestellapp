@@ -6,17 +6,17 @@
     { "id": "salads", "name": "Salate", "order": 3 }
   ],
   "items": [
-    { "id": "pz-margherita", "category": "pizza", "name": "Pizza Margherita", "priceCents": 1250, "desc": "Tomate, Mozzarella, Basilikum.", "portion": "Ø 32 cm", "img": "assets/img/pizza/margherita.jpg", "tags": ["vegetarisch"] },
-    { "id": "pz-salami",     "category": "pizza", "name": "Pizza Salami",     "priceCents": 1450, "desc": "Tomate, Mozzarella, Salami.",    "portion": "Ø 32 cm", "img": "assets/img/pizza/salami.jpg",     "tags": [] },
-    { "id": "pz-funghi",     "category": "pizza", "name": "Pizza Funghi",     "priceCents": 1390, "desc": "Tomate, Mozzarella, Champignons.","portion": "Ø 32 cm", "img": "assets/img/pizza/funghi.jpg",     "tags": ["vegetarisch"] },
+    { "id": "pz-margherita", "category": "Pizza", "name": "Pizza Margherita", "priceCents": 1250, "desc": "Tomate, Mozzarella, Basilikum.", "portion": "Ø 32 cm", "img": "assets/img/pizza/margherita.jpg", "tags": ["vegetarisch"] },
+    { "id": "pz-salami",     "category": "Pizza", "name": "Pizza Salami",     "priceCents": 1450, "desc": "Tomate, Mozzarella, Salami.",    "portion": "Ø 32 cm", "img": "assets/img/pizza/salami.jpg",     "tags": [] },
+    { "id": "pz-funghi",     "category": "Pizza", "name": "Pizza Funghi",     "priceCents": 1390, "desc": "Tomate, Mozzarella, Champignons.","portion": "Ø 32 cm", "img": "assets/img/pizza/funghi.jpg",     "tags": ["vegetarisch"] },
 
-    { "id": "pa-carbonara",  "category": "pasta", "name": "Spaghetti Carbonara","priceCents": 1590, "desc": "Guanciale, Ei, Pecorino.", "portion": "400 g", "img": "assets/img/pasta/carbonara.jpg", "tags": [] },
-    { "id": "pa-bolognese",  "category": "pasta", "name": "Tagliatelle Bolognese","priceCents": 1650, "desc": "Ragù alla bolognese.", "portion": "450 g", "img": "assets/img/pasta/bolognese.jpg", "tags": [] },
-    { "id": "pa-alfredo",    "category": "pasta", "name": "Fettuccine Alfredo","priceCents": 1490, "desc": "Butter, Parmesan, Pfeffer.", "portion": "400 g", "img": "assets/img/pasta/alfredo.jpg", "tags": ["vegetarisch"] },
+    { "id": "pa-carbonara",  "category": "Pasta", "name": "Spaghetti Carbonara","priceCents": 1590, "desc": "Guanciale, Ei, Pecorino.", "portion": "400 g", "img": "assets/img/pasta/carbonara.jpg", "tags": [] },
+    { "id": "pa-bolognese",  "category": "Pasta", "name": "Tagliatelle Bolognese","priceCents": 1650, "desc": "Ragù alla bolognese.", "portion": "450 g", "img": "assets/img/pasta/bolognese.jpg", "tags": [] },
+    { "id": "pa-alfredo",    "category": "Pasta", "name": "Fettuccine Alfredo","priceCents": 1490, "desc": "Butter, Parmesan, Pfeffer.", "portion": "400 g", "img": "assets/img/pasta/alfredo.jpg", "tags": ["vegetarisch"] },
 
-    { "id": "sa-caprese",    "category": "salads","name": "Insalata Caprese", "priceCents": 1190, "desc": "Mozzarella, Tomate, Basilikum.", "portion": "350 g", "img": "assets/img/salads/caprese.jpg", "tags": ["vegetarisch","glutenfrei"] },
-    { "id": "sa-caesar",     "category": "salads","name": "Caesar Salad",     "priceCents": 1290, "desc": "Römersalat, Parmesan, Croûtons.", "portion": "380 g", "img": "assets/img/salads/caesar.jpg", "tags": [] },
-    { "id": "sa-rucola",     "category": "salads","name": "Rucola-Parmesan",  "priceCents": 1090, "desc": "Rucola, Tomaten, Parmesan.", "portion": "320 g", "img": "assets/img/salads/rucola.jpg", "tags": ["vegetarisch"] }
+    { "id": "sa-caprese",    "category": "Salate","name": "Insalata Caprese", "priceCents": 1190, "desc": "Mozzarella, Tomate, Basilikum.", "portion": "350 g", "img": "assets/img/salads/caprese.jpg", "tags": ["vegetarisch","glutenfrei"] },
+    { "id": "sa-caesar",     "category": "Salate","name": "Caesar Salad",     "priceCents": 1290, "desc": "Römersalat, Parmesan, Croûtons.", "portion": "380 g", "img": "assets/img/salads/caesar.jpg", "tags": [] },
+    { "id": "sa-rucola",     "category": "Salate","name": "Rucola-Parmesan",  "priceCents": 1090, "desc": "Rucola, Tomaten, Parmesan.", "portion": "320 g", "img": "assets/img/salads/rucola.jpg", "tags": ["vegetarisch"] }
   ],
   "updatedAt": "2025-10-26T08:00:00Z"
 }

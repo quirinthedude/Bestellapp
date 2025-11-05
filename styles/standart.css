@@ -28,7 +28,8 @@ body {
   --tracking-tight: -0.01em;
 
   --radius: 16px;
-  --shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  --shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.08);
+  --v-shadow-left: -8px 0 18px -8px rgba(0, 0, 0, .25);
   --max: 1280px;
   --content: 1024px;
   --cart: 300px;
@@ -128,7 +129,8 @@ button {
 
 .sticky {
   position: sticky;
-  top: 16px;
+  top: 0px;
+  z-index: 1;
 }
 
 .scroll {

@@ -1,22 +1,25 @@
 main {
-  margin: auto ;
-    width: 100vw;
-    max-width: var(--max);
-    display: flex;
-    gap: var(--gap);
+  margin: auto;
+  position: relative;
+  z-index: 0;
+  width: 100vw;
+  max-width: var(--max);
+  display: flex;
+  gap: var(--gap);
 
 }
 
 .hero-img {
-    height: 500px;
-    width: min(100%, calc(100vw - var(--cart) - var(--gap)));
-    /* width: min(100%, calc(var(--max) - var(--cart) - var(--gap))); */
-    margin-block: 16px 24px;
+  height: 500px;
+  width: min(100%, calc(100vw - var(--cart) - var(--gap)));
+  /* width: min(100%, calc(var(--max) - var(--cart) - var(--gap))); */
+  margin-block: 0 24px;
 }
 
 .left {
-    width: 100%;
-    flex: 1 1 auto;
+  padding-top: 16px;
+  width: 100%;
+  flex: 1 1 auto;
 }
 
 
@@ -24,9 +27,9 @@ main {
 /* product-content                                                                    */
 /**************************************************************************************/
 .content {
-    max-width: var(--content);
-    width: 90%;
-    margin-inline: auto;
+  max-width: var(--content);
+  width: 90%;
+  margin-inline: auto;
 }
 
 .info-icon {
@@ -43,15 +46,16 @@ main {
   color: var(--text);
   cursor: help;
 }
- .restaurant {
-    display: flex;
-    justify-content: space-between;
- }
- 
+
+.restaurant {
+  display: flex;
+  justify-content: space-between;
+}
+
 .search-menu {
   display: flex;
   align-items: center;
-  gap: 8px;                  
+  gap: 8px;
   border: 1px solid var(--muted);
   border-radius: 16px;
   padding: 8px 12px;
@@ -61,11 +65,12 @@ main {
 
 .search-menu svg {
   flex: 0 0 auto;
-  color: var(--text);  
+  color: var(--text);
 }
 
 .search-menu input {
-  flex: 1;                   /* takes rest of space*/
+  flex: 1;
+  /* takes rest of space*/
   border: none;
   outline: none;
   font-size: 1rem;
@@ -77,11 +82,20 @@ main {
   width: auto;
 }
 
+.sticky-wrap {
+  background: var(--bg);
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
 /**************************************************************************************/
 /* cart                                                                               */
 /**************************************************************************************/
 
 .cart {
-    padding-top: 16px;
-    flex: 0 0 var(--cart);
+  box-shadow: var(--v-shadow-left);
+  margin-top: 16px;
+  padding-top: 8px;
+  padding-left: 8px;
+  flex: 0 0 var(--cart);
 }
