@@ -37,6 +37,10 @@ body {
   --pad: 16px;
 }
 
+.seperator {
+  box-shadow: var(--shadow);
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);

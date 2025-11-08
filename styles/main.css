@@ -78,8 +78,18 @@ main {
 }
 
 .menu-img {
-  height: 80px;
+  height: 112px;
   width: auto;
+}
+
+.menu-img-container {
+  position: relative;
+}
+
+.add-button {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.05rem;
 }
 
 .sticky-wrap {
@@ -98,4 +108,5 @@ main {
   padding-top: 8px;
   padding-left: 8px;
   flex: 0 0 var(--cart);
+  align-self: flex-start;
 }

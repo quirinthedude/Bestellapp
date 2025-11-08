@@ -40,39 +40,42 @@ renderMenu();
 
 //die menu rendern
 function renderMenu() {
-    const ITEMS = menu.items;
-    let current = null;
-    let html = '';
-    ITEMS.forEach(it => {
-        if (it.category !== current) {
-            current = it.category;
-            html += `<h2 id="${current}" class="-dist16px>${current}</h2><div>`;
-        }
-        html += `
-      <article class="meneu-item">
-        <h4>${it.name}</h4>
+  const ITEMS = menu.items;
+  let current = null;
+  let html = '';
+  ITEMS.forEach(it => {
+    if (it.category !== current) {
+      current = it.category;
+      html += `<h2 id="${current}" class="-dist16px">${current}</h2>`;
+    }
+    html += `<article class="flex-around -dist8px">
+        <div>
+        <h3>${it.name}</h3>
         <p>${it.desc}</p>
-        <div class="meta">
-          <span class="portion">${it.portion || ''}</span>
-          <span class="price">CHF ${(it.priceCents / 100).toFixed(2)}</span>
+        <p>${it.portion || ''}</p>
+        <p> <b>CHF ${(it.priceCents / 100).toFixed(2)}</b></p>
+        </div>
+        <div class="menu-img-container">
+        <img class="menu-img" src="${it.img}" alt="${it.name}">
+        <button class="add-button"><img src="./assets/icons/add.svg" alt="add"></button>
+
         </div>
       </article>`;
-    })
-    html+= `</div>`;
-    $('#content').innerHTML = html;
+  })
+  $('#content').innerHTML = html;
 }
 
 
 
 
 function renderLinkBar() {
-    const MENULINK = menu.categories;
-    let html = '';
-    MENULINK.forEach(CAT => {
-        const ID = CAT.id;
-        const NAME = CAT.name;
-        html += `<a href="${ID}" class="btn">${NAME}</a>`;
-    });
-    $('#menu-bar').innerHTML = html;
+  const MENULINK = menu.categories;
+  let html = '';
+  MENULINK.forEach(CAT => {
+    const ID = CAT.id;
+    const NAME = CAT.name;
+    html += `<a href="${ID}" class="btn">${NAME}</a>`;
+  });
+  $('#menu-bar').innerHTML = html;
 }
 //
