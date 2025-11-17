@@ -45,15 +45,25 @@ const BY_ID = Object.fromEntries(
 );
 
 // eventListener für add und remove
-// eventListener für add und remove
 document.addEventListener('click', (ev) => {
   const add = ev.target.closest('[data-add]');
+  const del = ev.target.closest('[data-del]');
   if (add) {
     const id = add.dataset.add;
     CART[id] = (CART[id] || 0) + 1;
     console.log('CART jetzt:', CART);
     renderCart();
     return;  // optional
+  }
+  if (del) {
+    const id = del.dataset.del;
+    if (CART[id] <= 1) {
+      delete CART[id];
+    } else {
+      CART[id]--;
+    }
+    renderCart();
+    return;
   }
 
   // später kommt hier "del"
@@ -117,15 +127,18 @@ function renderCart() {
 
     rows += `
       <div class="row">
-        <span class="qty">${qty}×</span>
-        <span class="name">${it.name}</span>
-        <span class="line">${CHF.format(line)}</span>
-        <button data-del="${id}" aria-label="Entfernen">–</button>
+        <p class="name -dist8px"><b>${it.name}</b></p>
+        <p>
+        <button class="btn" data-add="${id}" aria-label="hinzufügen">+</button>
+        <span class="qty">Anzahl: ${qty}</span>
+        <button class="btn" data-del="${id}" aria-label="Entfernen">-</button>
+        </p>
+        <p class="line">${CHF.format(line)}</p>
       </div>`;
   }
   if (!rows) {
-  rows = '<p class="empty">Warenkorb ist leer</p>';
-}
+    rows = '<p class="empty">Warenkorb ist leer</p>';
+  }
 
   host.innerHTML = rows;
   TOTAL.innerText = CHF.format(total);
