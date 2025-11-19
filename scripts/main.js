@@ -1,8 +1,12 @@
 //  imports
 import { $, $$, within } from "./helpers.js";
-
-
-
+import {
+  tplMenuCategoryHeading,
+  tplMenuItem,
+  tplMenuLink,
+  tplCartRow,
+  T_CART_EMPTY
+} from "./templates.js";
 
 
 // load Menu-JSON -> ready to render
@@ -75,41 +79,36 @@ renderLinkBar();
 renderMenu();
 
 
-//die menu rendern
+// die menu rendern
 function renderMenu() {
   const ITEMS = menu.items;
   let current = null;
   let html = '';
+
   ITEMS.forEach(it => {
     if (it.category !== current) {
       current = it.category;
-      html += `<h2 id="${current}" class="-dist16px">${current}</h2>`;
+      // Überschrift aus Template
+      html += tplMenuCategoryHeading(current);
     }
-    html += `<article class="flex-around -dist8px">
-        <div>
-        <h3>${it.name}</h3>
-        <p>${it.desc}</p>
-        <p>${it.portion || ''}</p>
-        <p> <b>CHF ${(it.priceCents / 100).toFixed(2)}</b></p>
-        </div>
-        <div class="menu-img-container">
-        <img class="menu-img" src="${it.img}" alt="${it.name}">
-        <button class="add-button" data-add="${it.id}"><img src="./assets/icons/add.svg" alt="add"></button>
+    // Item aus Template
+    html += tplMenuItem(it);
+  });
 
-        </div>
-      </article>`;
-  })
   $('#content').innerHTML = html;
 }
 
 function renderLinkBar() {
   const MENULINK = menu.categories;
   let html = '';
+
   MENULINK.forEach(CAT => {
     const ID = CAT.id;
     const NAME = CAT.name;
-    html += `<a href="${ID}" class="btn">${NAME}</a>`;
+    // Link aus Template
+    html += tplMenuLink(ID, NAME);
   });
+
   $('#menu-bar').innerHTML = html;
 }
 
@@ -119,30 +118,23 @@ function renderCart() {
 
   let total = 0;
   let rows = '';
+
   for (const [id, qty] of Object.entries(CART)) {
     const it = BY_ID[id];
     if (!it) continue;
     const line = (it.priceCents * qty) / 100;
     total += line;
 
-    rows += `
-      <div class="row">
-        <p class="name -dist8px"><b>${it.name}</b></p>
-        <p>
-        <button class="btn" data-add="${id}" aria-label="hinzufügen">+</button>
-        <span class="qty">Anzahl: ${qty}</span>
-        <button class="btn" data-del="${id}" aria-label="Entfernen">-</button>
-        </p>
-        <p class="line">${CHF.format(line)}</p>
-      </div>`;
+    // Zeile aus Template, Geld bereits formatiert
+    rows += tplCartRow(it, id, qty, CHF.format(line));
   }
+
   if (!rows) {
-    rows = '<p class="empty">Warenkorb ist leer</p>';
+    rows = T_CART_EMPTY;
   }
 
   host.innerHTML = rows;
   TOTAL.innerText = CHF.format(total);
-
 }
 
 //
