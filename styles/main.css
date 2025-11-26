@@ -1,8 +1,8 @@
-main {
+.main-frame {
   margin: auto;
   position: relative;
   z-index: 0;
-  width: 100vw;
+  width: 100%;
   max-width: var(--max);
   display: flex;
   gap: var(--gap);
@@ -10,8 +10,9 @@ main {
 }
 
 .hero-img {
-  height: 500px;
-  width: min(100%, calc(100vw - var(--cart) - var(--gap)));
+  width: 100%;
+  height: auto;
+  /* width: min(100%, calc(100vw - var(--cart) - var(--gap))); */
   /* width: min(100%, calc(var(--max) - var(--cart) - var(--gap))); */
   margin-block: 0 24px;
 }
@@ -110,3 +111,14 @@ main {
   flex: 0 0 var(--cart);
   align-self: flex-start;
 }
+
+    .cart-button {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
