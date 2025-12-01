@@ -82,16 +82,23 @@ renderMenu();
 // die menu rendern
 function renderMenu() {
   const ITEMS = menu.items;
-  let current = null;
+  let currentId = null;
   let html = '';
 
   ITEMS.forEach(it => {
-    if (it.category !== current) {
-      current = it.category;
-      // Überschrift aus Template
-      html += tplMenuCategoryHeading(current);
+    const cat = menu.categories.find(c =>
+      c.id === it.category || c.name === it.category  //one of these fallbacks
+    );                                                //here I learned about ID
+
+    console.log('Heading-ID aus ITEMS:', it.category);
+    const catId = cat ? cat.id : it.category;         //is cat? -> it.category
+    const label = cat ? cat.name : it.category;       //german name for label
+
+    if (catId !== currentId) {
+      currentId = catId;
+      html += tplMenuCategoryHeading(catId, label);
     }
-    // Item aus Template
+
     html += tplMenuItem(it);
   });
 
@@ -103,6 +110,8 @@ function renderLinkBar() {
   let html = '';
 
   MENULINK.forEach(CAT => {
+    console.log('Link-ID aus CATEGORIES:', CAT.id);
+
     const ID = CAT.id;
     const NAME = CAT.name;
     // Link aus Template

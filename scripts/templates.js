@@ -1,7 +1,9 @@
+// imports for easyfying strings
+import { slug } from "./helpers.js"
 
 // headline of category
-export function tplMenuCategoryHeading(id) {
-  return `<h2 id="${id}" class="-dist16px">${id}</h2>`;
+export function tplMenuCategoryHeading(id, label) {
+  return `<h2 id="${slug(id)}" class="-dist16px">${label}</h2>`;
 }
 
 // one seperate menu-item
@@ -25,7 +27,7 @@ export function tplMenuItem(it) {
 // Link
 export function tplMenuLink(id, name) {
   // # before id, for making Link jump to <h2 id="..."> 
-  return `<a href="#${id}" class="btn">${name}</a>`;
+  return `<a href="#${slug(id)}" class="btn">${name}</a>`;
 }
 
 // 1 row in cart

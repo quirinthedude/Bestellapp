@@ -19,13 +19,22 @@ export const $ = (sel, root = document) => {    // variable sel should be direct
     //                                          // the same .class
     return root.querySelector(sel);
     try {
-        return root.querySelector(sel);     // kann SyntaxError werfen
+        return root.querySelector(sel);     // can cause SyntaxError 
     } catch (err) {
-        if (err && err.name === "SyntaxError") return null; // still zurückgeben
-        throw err; // andere Fehler (z. B. root=null) nicht verschlucken
+        if (err && err.name === "SyntaxError") return null; // silent return
+        throw err; // opther errors need to be shown
     }
 };
 
 export const $$ = (sel, root = document) => root.querySelectorAll(sel);
 export const within = (root) => (sel) => $(sel, root);
+
+export const slug = (str) => {
+    return str
+        .toLowerCase()
+        .normalize("NFD")                     // ä -> a
+        .replace(/[\u0300-\u036f]/g, '')    // remove diacritics
+        .replace(/[^a-z0-9]+/g, '-')        // all different th a-z and 0-9 to be '-'
+        .replace(/^-+|-+$/g, '');             // trim
+};
 

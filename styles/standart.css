@@ -196,6 +196,7 @@ h1 {
 h2 {
   font-weight: 600;
   font-size: clamp(1.25rem, 2vw, 1.6rem);
+  scroll-margin-top: 156px;
 }
 
 h3 {
