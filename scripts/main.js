@@ -48,17 +48,19 @@ const BY_ID = Object.fromEntries(
   menu.items.map(it => [it.id, it])
 );
 
-// eventListener für add und remove
+// eventListener 
 document.addEventListener('click', (ev) => {
   const add = ev.target.closest('[data-add]');
   const del = ev.target.closest('[data-del]');
+
   if (add) {
     const id = add.dataset.add;
     CART[id] = (CART[id] || 0) + 1;
     console.log('CART jetzt:', CART);
     renderCart();
-    return;  // optional
+    return;  
   }
+
   if (del) {
     const id = del.dataset.del;
     if (CART[id] <= 1) {
@@ -69,17 +71,15 @@ document.addEventListener('click', (ev) => {
     renderCart();
     return;
   }
-
-  // später kommt hier "del"
-  // const del = ev.target.closest('[data-del]');
-  // if (del) { ... }
 });
+
+
 
 renderLinkBar();
 renderMenu();
 
 
-// die menu rendern
+// menu render
 function renderMenu() {
   const ITEMS = menu.items;
   let currentId = null;
@@ -114,7 +114,7 @@ function renderLinkBar() {
 
     const ID = CAT.id;
     const NAME = CAT.name;
-    // Link aus Template
+    // Link from Template
     html += tplMenuLink(ID, NAME);
   });
 
@@ -134,7 +134,7 @@ function renderCart() {
     const line = (it.priceCents * qty) / 100;
     total += line;
 
-    // Zeile aus Template, Geld bereits formatiert
+    // line from Template, CHF formated
     rows += tplCartRow(it, id, qty, CHF.format(line));
   }
 
@@ -146,6 +146,45 @@ function renderCart() {
   TOTAL.innerText = CHF.format(total);
 }
 
+function openCart() {
+  const cart = document.getElementById('cart-panel');
+  const cartButton = document.getElementById('cart-button');
+  if (!cart || !cartButton) return;
+
+  cart.classList.remove('cart-is-closed');      // Overlay visible
+  cartButton.classList.add('cart-button-hidden'); // Button at bottom away
+}
+
+function closeCart() {
+  const cart = document.getElementById('cart-panel');
+  const cartButton = document.getElementById('cart-button');
+  if (!cart || !cartButton) return;
+
+  cart.classList.add('cart-is-closed');          // Overlay hidden
+  cartButton.classList.remove('cart-button-hidden'); // Button on again
+}
+
+// --- Cart-Setup direct execute (script at the end of <body>) ---
+
+const cartPanel = document.getElementById('cart-panel');
+const cartButton = document.getElementById('cart-button');
+const closeCartButton = document.getElementById('close-cart');
+
+// Start: Cart closed
+if (cartPanel && !cartPanel.classList.contains('cart-is-closed')) {
+  cartPanel.classList.add('cart-is-closed');
+}
+
+if (cartButton) {
+  cartButton.addEventListener('click', openCart);
+}
+
+if (closeCartButton) {
+  closeCartButton.addEventListener('click', closeCart);
+}
+
 //
 window.CART = CART;
 window.renderCart = renderCart;
+window.openCart = openCart;
+window.closeCart = closeCart;

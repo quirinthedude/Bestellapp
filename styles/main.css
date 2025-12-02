@@ -12,8 +12,6 @@
 .hero-img {
   width: 100%;
   height: auto;
-  /* width: min(100%, calc(100vw - var(--cart) - var(--gap))); */
-  /* width: min(100%, calc(var(--max) - var(--cart) - var(--gap))); */
   margin-block: 0 24px;
 }
 
@@ -112,13 +110,21 @@
   align-self: flex-start;
 }
 
-    .cart-button {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 48px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+#cart-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#close-cart {
+  position: absolute;
+  top: 10px;
+  right: 48px;
+  height: 12px;
+  width: 12px;
+}

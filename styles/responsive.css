@@ -1,32 +1,54 @@
 @media (min-width: 561px) {
-    .cart {
+    /* Desktop: Cart always visible, button gone */
+    #cart-panel {
         display: block !important;
+        position: sticky;
+        top: 96px;            
     }
 
-    .cart-button {
+    #cart-button {
         display: none !important;
+    }
+
+    .main-frame {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
     }
 }
 
 @media (max-width: 560px) {
-    .cart {
+    /* Mobile: MenuFlow, Cart as Overlay */
+    .main-frame {
+        display: block;
+    }
+
+    /* Overlay-Cart */
+    #cart-panel {
+        position: fixed;
+        inset: 0;                /* top/right/bottom/left: 0 */
+        z-index: 1000;
+        background: #fff;
+        overflow-y: auto;
+    }
+
+    /* hide Cart if Flag set */
+    #cart-panel.cart-is-closed {
         display: none !important;
     }
 
-    .cart-button {
-        display: flex !important;
+    /* Mobile-Button */
+    #cart-button {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-/* 
-    .left {
-        flex: 1;
-        width: 90%;
-        max-width: var(--content);
-        display:inline-block;
-        margin-inline: auto;
 
-    } */
-
-    .main-frame {
-        display: block;
+    /* hide Button if Cart open */
+    #cart-button.cart-button-hidden {
+        display: none !important;
     }
 }

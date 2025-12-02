@@ -39,46 +39,48 @@
   </header>
   <main>
     <div class="main-frame">
-    <section class="left">
-      <img class="hero-img" src="./assets/img/hero_mammamia.png" alt="Trattoria Mama Mia">
-      <div class="content">
-        <div class="restaurant">
-          <h1>Mama Mia Trattoria</h1>
-          <span class="info-icon">i</span>
+      <section class="left">
+        <img class="hero-img" src="./assets/img/hero_mammamia.png" alt="Trattoria Mama Mia">
+        <div class="content">
+          <div class="restaurant">
+            <h1>Mama Mia Trattoria</h1>
+            <span class="info-icon">i</span>
 
-        </div>
-        <p class="muted -dist8px" id="infos">⭐ 4.7 · Italienisch · Lieferzeit ~30–45 min · Lieferkosten CHF 3.90</p>
-        <div class="sticky sticky-wrap">
-          <p class="search-menu -dist16px">
-            <!-------------- SVG-Lupe (Find-Icon)---------------------------------------->
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Suche">
-              <title>Suche</title>
-              <circle cx="11" cy="11" r="7" />
-              <line x1="16.5" y1="16.5" x2="21" y2="21" />
-            </svg>
-            <!--------------------------------------------------------------------------->
-            <input id="find-menu" type="text" name="" placeholder="Suche Mama Mia Trattoria">
-          </p>
-          <p class="flex -dist16px" id="menu-bar">
-            <a href="#" class="btn">a</a>
-            <a href="#" class="btn">b</a>
-            <a href="#" class="btn">c</a>
-          </p>
-        </div>
-        <div id="content">
+          </div>
+          <p class="muted -dist8px" id="infos">⭐ 4.7 · Italienisch · Lieferzeit ~30–45 min · Lieferkosten CHF 3.90</p>
+          <div class="sticky sticky-wrap">
+            <p class="search-menu -dist16px">
+              <!-------------- SVG-Lupe (Find-Icon)---------------------------------------->
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Suche">
+                <title>Suche</title>
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.5" y1="16.5" x2="21" y2="21" />
+              </svg>
+              <!--------------------------------------------------------------------------->
+              <input id="find-menu" type="text" name="" placeholder="Suche Mama Mia Trattoria">
+            </p>
+            <p class="flex -dist16px" id="menu-bar">
+              <a href="#" class="btn">a</a>
+              <a href="#" class="btn">b</a>
+              <a href="#" class="btn">c</a>
+            </p>
+          </div>
+          <div id="content">
 
+          </div>
         </div>
-      </div>
-    </section>
-    <aside class="cart sticky sticky-wrap" aria-live="polite">
+      </section>
+    </div>
+
+    <aside id="cart-panel" class="cart sticky sticky-wrap cart-is-closed" aria-live="polite">
       <h2>Warenkorb</h2>
       <div id="cart-list" class="-dist8px"></div>
       <p class="-dist16px">Total: <strong id="total">CHF 0.00</strong></p>
       <button id="pay" class="btn">Bezahlen</button>
+      <button id="close-cart" class="btn only-mobile">X</button>
     </aside>
-    </div>
-    <section class="cart-button btn only-mobile">🛒 Warenkorb</section>
+    <button id="cart-button" class="btn only-mobile">🛒 Warenkorb</button>
 
   </main>
 
