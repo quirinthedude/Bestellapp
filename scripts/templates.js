@@ -8,7 +8,7 @@ export function tplMenuCategoryHeading(id, label) {
 
 // one seperate menu-item
 export function tplMenuItem(it) {
-  return `<article class="flex-around -dist8px">
+  return `<article class="menu-item flex-around -dist8px">
     <div>
       <h3>${it.name}</h3>
       <p>${it.desc}</p>

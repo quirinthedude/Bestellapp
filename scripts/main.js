@@ -58,7 +58,13 @@ document.addEventListener('click', (ev) => {
     CART[id] = (CART[id] || 0) + 1;
     console.log('CART jetzt:', CART);
     renderCart();
-    return;  
+    // Pulse-Effekt auf dem gesamten Artikel
+    const article = add.closest('.menu-item');
+    if (article) {
+      article.classList.add('pulse');
+      setTimeout(() => article.classList.remove('pulse'), 200); // 200ms = smooth
+    }
+        return;  
   }
 
   if (del) {
