@@ -63,9 +63,9 @@ document.addEventListener('click', (ev) => {
     const article = add.closest('.menu-item');
     if (article) {
       article.classList.add('pulse');
-      setTimeout(() => article.classList.remove('pulse'), 150); 
+      setTimeout(() => article.classList.remove('pulse'), 150);
     }
-        return;  
+    return;
   }
 
   if (del) {
@@ -152,6 +152,23 @@ function renderCart() {
   TOTAL.innerText = CHF.format(total);
 }
 
+function payForOrder() {
+  const orderMessager = document.getElementById('order-message');
+  if (!orderMessager) return;
+
+  const hasItems = Object.keys(CART).length > 0;
+  if (!hasItems) {
+    orderMessager.innerText = 'Der Warenkorb ist leer. Bitte zuerst Bestellen!';
+    return;
+  }
+  for (const id in CART) {
+    delete CART[id];
+  }
+  renderCart();
+  orderMessager.innerText = 'Danke. Die Bestellung ist eingegangen';
+
+}
+
 function openCart() {
   const cart = document.getElementById('cart-panel');
   const cartButton = document.getElementById('cart-button');
@@ -176,6 +193,10 @@ const cartPanel = document.getElementById('cart-panel');
 const cartButton = document.getElementById('cart-button');
 const closeCartButton = document.getElementById('close-cart');
 
+// --- Pay-Button Set-up ---
+const payButton = document.getElementById('pay');
+
+
 // Start: Cart closed
 if (cartPanel && !cartPanel.classList.contains('cart-is-closed')) {
   cartPanel.classList.add('cart-is-closed');
@@ -189,6 +210,9 @@ if (closeCartButton) {
   closeCartButton.addEventListener('click', closeCart);
 }
 
+if (payButton) {
+  payButton.addEventListener('click', payForOrder)
+}
 //
 window.CART = CART;
 window.renderCart = renderCart;
