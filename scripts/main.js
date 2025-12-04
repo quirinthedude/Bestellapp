@@ -5,6 +5,7 @@ import {
   tplMenuItem,
   tplMenuLink,
   tplCartRow,
+  tplCardButtonSpace,
   T_CART_EMPTY
 } from "./templates.js";
 
@@ -96,7 +97,6 @@ function renderMenu() {
       c.id === it.category || c.name === it.category  //one of these fallbacks
     );                                                //here I learned about ID
 
-    console.log('Heading-ID aus ITEMS:', it.category);
     const catId = cat ? cat.id : it.category;         //is cat? -> it.category
     const label = cat ? cat.name : it.category;       //german name for label
 
@@ -107,7 +107,7 @@ function renderMenu() {
 
     html += tplMenuItem(it);
   });
-
+  html += tplCardButtonSpace();
   $('#content').innerHTML = html;
 }
 

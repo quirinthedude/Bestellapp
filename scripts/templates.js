@@ -44,5 +44,11 @@ export function tplCartRow(it, id, qty, lineFormatted) {
     </div>`;
 }
 
+export function tplCardButtonSpace() {
+  return`
+   <div class="card-button-space"></div>
+  `;
+}
+
 // Fallback if cart is empty
 export const T_CART_EMPTY = '<p class="empty">Warenkorb ist leer</p>';
