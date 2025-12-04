@@ -62,7 +62,7 @@ document.addEventListener('click', (ev) => {
     const article = add.closest('.menu-item');
     if (article) {
       article.classList.add('pulse');
-      setTimeout(() => article.classList.remove('pulse'), 200); // 200ms = smooth
+      setTimeout(() => article.classList.remove('pulse'), 150); 
     }
         return;  
   }

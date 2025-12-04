@@ -87,21 +87,24 @@
 
 .menu-item {
   padding: 1% 1% 0.2% 1%;
-  transition: background-color 200ms ease-out;
   border-radius: 16px;
   transition: background-color 150ms ease-out,
-              transform 120ms ease-out,
-              box-shadow 120ms ease-out;
+    transform 150ms ease-out,
+    box-shadow 120ms ease-out;
 }
+
 .menu-item:hover {
-  background-color: var(--accent);
+  background-color: var(--accent-hover);
   transform: translateY(-1px);
-  box-shadow: var(--shadow); 
+  box-shadow: var(--shadow);
   cursor: pointer;
 }
 
 .menu-item.pulse {
   background-color: var(--accent);
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
 }
 
 .add-button {
