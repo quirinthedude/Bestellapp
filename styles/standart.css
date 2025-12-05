@@ -11,6 +11,10 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg: #ffffff;
   --text: #1c1c1c;
@@ -157,25 +161,6 @@ button {
   color: #111;
   font-weight: 700;
   text-decoration: none;
-}
-
-/* responsive helpers */
-.only-desktop {
-  display: none;
-}
-
-.only-mobile {
-  display: initial;
-}
-
-@media (min-width: 768px) {
-  .only-desktop {
-    display: initial;
-  }
-
-  .only-mobile {
-    display: none;
-  }
 }
 
 /* typos */

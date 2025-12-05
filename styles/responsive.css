@@ -1,9 +1,14 @@
+.only-mobile {
+        display: none;
+    }
+
 @media (min-width: 561px) {
+
     /* Desktop: Cart always visible, button gone */
     #cart-panel {
         display: block !important;
         position: sticky;
-        top: 96px;            
+        top: 96px;
     }
 
     #cart-button {
@@ -14,9 +19,15 @@
         display: grid;
         grid-template-columns: 2fr 1fr;
     }
+
+    .only-mobile {
+        display: none;
+    }
+
 }
 
 @media (max-width: 560px) {
+
     /* Mobile: MenuFlow, Cart as Overlay */
     .main-frame {
         display: block;
@@ -25,7 +36,8 @@
     /* Overlay-Cart */
     #cart-panel {
         position: fixed;
-        inset: 0;                /* top/right/bottom/left: 0 */
+        inset: 0;
+        /* top/right/bottom/left: 0 */
         z-index: 1000;
         background: #fff;
         overflow-y: auto;
@@ -51,4 +63,8 @@
     #cart-button.cart-button-hidden {
         display: none !important;
     }
+
+     .only-mobile {
+    display: block;
+  }
 }
