@@ -20,6 +20,7 @@ export function tplMenuItem(it) {
       <button class="add-button" data-add="${it.id}">
         <img src="./assets/icons/add.svg" alt="add">
       </button>
+      <span class="product-badge" hidden></span>
     </div>
   </article>`;
 }
@@ -33,31 +34,33 @@ export function tplMenuLink(id, name) {
 // 1 row in cart
 export function tplCartRow(it, id, qty, lineFormatted) {
   return `
-    <div class="row">
-      <p class="name -dist8px"><b>${it.name}</b></p>
-      <p>
-        <button class="btn" data-add="${id}" aria-label="Hinzufügen">+</button>
+    <div class="row seperator -dist8px">
+      <div class="row-top">
+       <span class="name"><b>${it.name}</b></span>
+       <span class="line">${lineFormatted}</span>
+      </div>
+      <p class="btn flex-center">
+        <button  data-add="${id}" aria-label="Hinzufügen">+</button>
         <span class="qty">Anzahl: ${qty}</span>
-        <button class="btn" data-del="${id}" aria-label="Entfernen">-</button>
+        <button data-del="${id}" aria-label="Entfernen">-</button>
       </p>
-      <p class="line">${lineFormatted}</p>
     </div>`;
 }
 
 export function tplCardButtonSpace() {
-  return`
+  return `
    <div class="card-button-space"></div>
   `;
 }
 
 export function tplCartContentBeginn() {
-  return`
+  return `
   <div class="cart-content-space">
   `;
 }
 
 export function tplCartContentEnd() {
-  return`
+  return `
   </div>
   `;
 }

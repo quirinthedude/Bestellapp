@@ -130,6 +130,11 @@ button {
   justify-content: space-between;
 }
 
+.flex-end {
+  display: flex;
+  justify-content: end;
+}
+
 .grid {
   display: grid;
   gap: var(--gap);

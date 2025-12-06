@@ -61,6 +61,7 @@ document.addEventListener('click', (ev) => {
     CART[id] = (CART[id] || 0) + 1;
     console.log('CART jetzt:', CART);
     renderCart();
+    updateProductBadge(id);
     // Pulse-Effekt auf dem gesamten Artikel
     const article = add.closest('.menu-item');
     if (article) {
@@ -78,6 +79,7 @@ document.addEventListener('click', (ev) => {
       CART[id]--;
     }
     renderCart();
+    updateProductBadge(id);
     return;
   }
 });
@@ -86,6 +88,8 @@ document.addEventListener('click', (ev) => {
 
 renderLinkBar();
 renderMenu();
+updateAllProductBadges();
+
 
 
 // menu render
@@ -179,7 +183,7 @@ function openCart() {
   const cart = document.getElementById('cart-panel');
   const cartButton = document.getElementById('cart-button');
   document.body.style.overflow = "hidden";
-  document.body.classList.add('cart-open');      
+  document.body.classList.add('cart-open');
   if (!cart || !cartButton) return;
 
   cart.classList.remove('cart-is-closed');      // Overlay visible
@@ -196,6 +200,30 @@ function closeCart() {
   cart.classList.add('cart-is-closed');          // Overlay hidden
   cartButton.classList.remove('cart-button-hidden'); // Button on again
 }
+
+function updateProductBadge(id) {
+  const article = document.querySelector(`.menu-item[data-add="${id}"]`);
+  if (!article) return;
+
+  const badge = article.querySelector('.product-badge');
+  if (!badge) return;
+
+  const qty = CART[id] || 0;
+
+  if (!qty) {
+    badge.hidden = true;        
+  } else {
+    badge.hidden = false;         
+    badge.textContent = qty > 9 ? '9+' : qty;
+  }
+}
+
+function updateAllProductBadges() {
+  for (const id in CART) {
+    updateProductBadge(id);
+  }
+}
+
 
 // --- Cart-Setup direct execute (script at the end of <body>) ---
 
