@@ -50,5 +50,17 @@ export function tplCardButtonSpace() {
   `;
 }
 
+export function tplCartContentBeginn() {
+  return`
+  <div class="cart-content-space">
+  `;
+}
+
+export function tplCartContentEnd() {
+  return`
+  </div>
+  `;
+}
+
 // Fallback if cart is empty
 export const T_CART_EMPTY = '<p class="empty">Warenkorb ist leer</p>';

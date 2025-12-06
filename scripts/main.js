@@ -6,6 +6,8 @@ import {
   tplMenuLink,
   tplCartRow,
   tplCardButtonSpace,
+  tplCartContentBeginn,
+  tplCartContentEnd,
   T_CART_EMPTY
 } from "./templates.js";
 
@@ -133,6 +135,7 @@ function renderCart() {
 
   let total = 0;
   let rows = '';
+  let content = tplCartContentBeginn();
 
   for (const [id, qty] of Object.entries(CART)) {
     const it = BY_ID[id];
@@ -148,7 +151,10 @@ function renderCart() {
     rows = T_CART_EMPTY;
   }
 
-  host.innerHTML = rows;
+  content += rows;
+  content += tplCartContentEnd();
+
+  host.innerHTML = content;
   TOTAL.innerText = CHF.format(total);
 }
 
@@ -172,6 +178,8 @@ function payForOrder() {
 function openCart() {
   const cart = document.getElementById('cart-panel');
   const cartButton = document.getElementById('cart-button');
+  document.body.style.overflow = "hidden";
+  document.body.classList.add('cart-open');      
   if (!cart || !cartButton) return;
 
   cart.classList.remove('cart-is-closed');      // Overlay visible
@@ -181,6 +189,8 @@ function openCart() {
 function closeCart() {
   const cart = document.getElementById('cart-panel');
   const cartButton = document.getElementById('cart-button');
+  document.body.style.overflow = "";
+  document.body.classList.remove('cart-open');    // <-- NEU
   if (!cart || !cartButton) return;
 
   cart.classList.add('cart-is-closed');          // Overlay hidden

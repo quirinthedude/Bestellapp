@@ -28,19 +28,18 @@
 
 @media (max-width: 560px) {
 
-    /* Mobile: MenuFlow, Cart as Overlay */
+    /* Mobile: MenuFlow */
     .main-frame {
         display: block;
     }
 
-    /* Overlay-Cart */
+    /* Cart-Overlay */
     #cart-panel {
         position: fixed;
         inset: 0;
-        /* top/right/bottom/left: 0 */
-        z-index: 1000;
+        z-index: 1000;         
         background: #fff;
-        overflow-y: auto;
+        overflow-y: auto;      
     }
 
     /* hide Cart if Flag set */
@@ -59,12 +58,28 @@
         align-items: center;
     }
 
-    /* hide Button if Cart open */
     #cart-button.cart-button-hidden {
         display: none !important;
     }
 
-     .only-mobile {
-    display: block;
-  }
+    .only-mobile {
+        display: block;
+    }
+
+    /* BODY-SCHLEIER */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 150ms ease-out;
+        z-index: 900;           /* Schleier */
+    }
+
+    body.cart-open::before {
+        opacity: 1;
+    }
 }
