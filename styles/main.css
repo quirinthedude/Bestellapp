@@ -176,19 +176,35 @@
 .cart {
   box-shadow: var(--v-shadow-left);
   margin-top: 16px;
-  padding-top: 8px;
-  padding-left: 8px;
+  padding: 8px;
   flex: 0 0 var(--cart);
   align-self: flex-start;
+  font-size: clamp(0.8rem, 0.18vw + 0.78rem, 0.95rem);
 }
 
 .cart-content-space{
   max-height: 70vh;
+  padding-right: 4px;
   overflow-y: auto;
 }
 
 .row-top {
   display: flex;
   justify-content: space-between;
+  padding-right: 4px;
+}
+
+.cart .name {
+  font-size: clamp(0.9rem, 0.2vw + 0.82rem, 1.05rem);
+  font-weight: 600;
+}
+
+.cart .line {
+  font-size: clamp(0.85rem, 0.17vw + 0.78rem, 0.95rem);
+}
+
+.cart .qty {
+  font-size: clamp(0.75rem, 0.15vw + 0.7rem, 0.9rem);
+  color: var(--muted);
 }
 

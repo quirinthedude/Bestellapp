@@ -135,6 +135,13 @@ button {
   justify-content: end;
 }
 
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 4px;
+}
+
 .grid {
   display: grid;
   gap: var(--gap);
