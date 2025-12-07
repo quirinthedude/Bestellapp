@@ -59,7 +59,6 @@ document.addEventListener('click', (ev) => {
   if (add) {
     const id = add.dataset.add;
     CART[id] = (CART[id] || 0) + 1;
-    console.log('CART jetzt:', CART);
     renderCart();
     updateProductBadge(id);
     // Pulse-Effekt auf dem gesamten Artikel
@@ -122,8 +121,6 @@ function renderLinkBar() {
   let html = '';
 
   MENULINK.forEach(CAT => {
-    console.log('Link-ID aus CATEGORIES:', CAT.id);
-
     const ID = CAT.id;
     const NAME = CAT.name;
     // Link from Template

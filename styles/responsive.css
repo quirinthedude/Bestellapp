@@ -8,7 +8,7 @@
     #cart-panel {
         display: block !important;
         position: sticky;
-        top: 96px; /*not 96 anymore*/
+        top: 32px; /*not 96 anymore*/
     }
 
     #cart-button {
