@@ -1,5 +1,6 @@
-//  imports
-import { $, $$, within } from "./helpers.js";
+// --- Imports ---------------------------------------------------------------
+
+import { $ } from "./helpers.js";
 import {
   tplMenuCategoryHeading,
   tplMenuItem,
@@ -12,56 +13,64 @@ import {
 } from "./templates.js";
 
 
-// load Menu-JSON -> ready to render
+// --- Load Region & Restaurant Data -----------------------------------------
 
-// region, a great bunch of function would obiously be needed to return in reality
 const REGION = 'basel-stadt';
 const REGION_URL = `./scripts/data/ch/${REGION}.json`;
 
-const regionRes = await fetch(REGION_URL);            // fetch loads URL asyncron, awaits anyway
-const region = await regionRes.json();                // { restaurants: ["mama-mia.basel"], ... }
+// Load region → contains list of restaurants
+const regionRes = await fetch(REGION_URL);
+const region = await regionRes.json(); // e.g. { restaurants: ["mama-mia.basel"] }
 
-// first restaurant (in Reality would have been choosen on site before)
-const restaurantId = region.restaurants[0];           // "mama-mia.basel"
+// Pick the first restaurant (in reality: user selection)
+const restaurantId = region.restaurants[0];
 const RESTAURANT_URL = `./scripts/data/restaurants/${restaurantId}.json`;
-// retstaurantId - for simulation here's just one
 
+// Load restaurant metadata (logo, hero image, ETA etc.)
 const restaurantRes = await fetch(RESTAURANT_URL);
-const restaurant = await restaurantRes.json();        // (Hero, Logo, ETA, Fee, ...) here static
+const restaurant = await restaurantRes.json();
 
-// here is the start of the code used
+// Load menu assigned to the restaurant
 const MENU_URL = `./scripts/data/menues/${restaurantId}.menue.json`;
+
 console.log('at:', location.href);
 console.log('REGION_URL abs:', new URL(REGION_URL, location.href).href);
 
 const menuRes = await fetch(MENU_URL);
-const menu = await menuRes.json();                    // { categories: [...], items: [...] }
+const menu = await menuRes.json(); // { categories: [...], items: [...] }
 
+// Currency formatter
 const CHF = new Intl.NumberFormat('de-CH', {
   style: 'currency',
   currency: 'CHF'
 });
 
 
-// objects being created to form adequate string pairs in cart
+// --- Application State ------------------------------------------------------
 
-const CART = Object.create(null); // {id : qty}
-// const BY_ID = Object.fromEntries(menu.items.map(it => [String(it.id), it]));
-const BY_ID = Object.fromEntries(
-  menu.items.map(it => [it.id, it])
-);
+// CART keeps quantities: { productId : qty }
+const CART = Object.create(null);
 
-// eventListener 
+// BY_ID allows quick lookup of menu items by their ID
+const BY_ID = Object.fromEntries(menu.items.map(it => [it.id, it]));
+
+
+// --- Event Delegation: Add / Remove Items ----------------------------------
+// One single click listener handles all + / - buttons using dataset attributes
+
 document.addEventListener('click', (ev) => {
   const add = ev.target.closest('[data-add]');
   const del = ev.target.closest('[data-del]');
 
+  // ADD item
   if (add) {
     const id = add.dataset.add;
     CART[id] = (CART[id] || 0) + 1;
+
     renderCart();
     updateProductBadge(id);
-    // Pulse-Effekt auf dem gesamten Artikel
+
+    // Visual pulse on the menu item
     const article = add.closest('.menu-item');
     if (article) {
       article.classList.add('pulse');
@@ -70,6 +79,7 @@ document.addEventListener('click', (ev) => {
     return;
   }
 
+  // REMOVE item
   if (del) {
     const id = del.dataset.del;
     if (CART[id] <= 1) {
@@ -84,51 +94,56 @@ document.addEventListener('click', (ev) => {
 });
 
 
+// --- Initial Rendering ------------------------------------------------------
 
 renderLinkBar();
 renderMenu();
 updateAllProductBadges();
 
 
+// --- Render Menu ------------------------------------------------------------
 
-// menu render
 function renderMenu() {
   const ITEMS = menu.items;
   let currentId = null;
   let html = '';
 
   ITEMS.forEach(it => {
+    // Find category based on ID or name (fallback)
     const cat = menu.categories.find(c =>
-      c.id === it.category || c.name === it.category  //one of these fallbacks
-    );                                                //here I learned about ID
+      c.id === it.category || c.name === it.category
+    );
 
-    const catId = cat ? cat.id : it.category;         //is cat? -> it.category
-    const label = cat ? cat.name : it.category;       //german name for label
+    const catId = cat ? cat.id : it.category;
+    const label = cat ? cat.name : it.category;
 
+    // Insert category heading when category changes
     if (catId !== currentId) {
       currentId = catId;
       html += tplMenuCategoryHeading(catId, label);
     }
 
+    // Render single menu item
     html += tplMenuItem(it);
   });
+
   html += tplCardButtonSpace();
   $('#content').innerHTML = html;
 }
 
+
+// --- Render Navigation Bar (Category Links) --------------------------------
+
 function renderLinkBar() {
-  const MENULINK = menu.categories;
   let html = '';
-
-  MENULINK.forEach(CAT => {
-    const ID = CAT.id;
-    const NAME = CAT.name;
-    // Link from Template
-    html += tplMenuLink(ID, NAME);
+  menu.categories.forEach(CAT => {
+    html += tplMenuLink(CAT.id, CAT.name);
   });
-
   $('#menu-bar').innerHTML = html;
 }
+
+
+// --- Render Cart ------------------------------------------------------------
 
 function renderCart() {
   const host = $('#cart-list');
@@ -141,114 +156,115 @@ function renderCart() {
   for (const [id, qty] of Object.entries(CART)) {
     const it = BY_ID[id];
     if (!it) continue;
+
     const line = (it.priceCents * qty) / 100;
     total += line;
 
-    // line from Template, CHF formated
+    // Add cart row via template
     rows += tplCartRow(it, id, qty, CHF.format(line));
   }
 
-  if (!rows) {
-    rows = T_CART_EMPTY;
-  }
+  if (!rows) rows = T_CART_EMPTY;
 
-  content += rows;
-  content += tplCartContentEnd();
+  content += rows + tplCartContentEnd();
 
   host.innerHTML = content;
   TOTAL.innerText = CHF.format(total);
 }
 
+
+// --- Pay Button -------------------------------------------------------------
+
 function payForOrder() {
-  const orderMessager = document.getElementById('order-message');
+  const orderMessager = $('#order-message');
   if (!orderMessager) return;
 
-  const hasItems = Object.keys(CART).length > 0;
-  if (!hasItems) {
+  if (Object.keys(CART).length === 0) {
     orderMessager.innerText = 'Der Warenkorb ist leer. Bitte zuerst Bestellen!';
     return;
   }
+
+  // Clear cart
   for (const id in CART) {
     delete CART[id];
   }
+
   renderCart();
   orderMessager.innerText = 'Danke. Die Bestellung ist eingegangen';
-
 }
 
+
+// --- Mobile Cart Overlay ----------------------------------------------------
+
 function openCart() {
-  const cart = document.getElementById('cart-panel');
-  const cartButton = document.getElementById('cart-button');
+  if (!cartPanel || !cartButton) return;
+
   document.body.style.overflow = "hidden";
   document.body.classList.add('cart-open');
-  if (!cart || !cartButton) return;
 
-  cart.classList.remove('cart-is-closed');      // Overlay visible
-  cartButton.classList.add('cart-button-hidden'); // Button at bottom away
+  cartPanel.classList.remove('cart-is-closed');
+  cartButton.classList.add('cart-button-hidden');
 }
 
 function closeCart() {
-  const cart = document.getElementById('cart-panel');
-  const cartButton = document.getElementById('cart-button');
-  document.body.style.overflow = "";
-  document.body.classList.remove('cart-open');    // <-- NEU
-  if (!cart || !cartButton) return;
+  if (!cartPanel || !cartButton) return;
 
-  cart.classList.add('cart-is-closed');          // Overlay hidden
-  cartButton.classList.remove('cart-button-hidden'); // Button on again
+  document.body.style.overflow = "";
+  document.body.classList.remove('cart-open');
+
+  cartPanel.classList.add('cart-is-closed');
+  cartButton.classList.remove('cart-button-hidden');
 }
 
+
+// --- Product Badge Update ---------------------------------------------------
+
 function updateProductBadge(id) {
-  const article = document.querySelector(`.menu-item[data-add="${id}"]`);
+  // Find the menu item matching the data-add attribute
+  const article = $(`.menu-item[data-add="${id}"]`);
   if (!article) return;
 
-  const badge = article.querySelector('.product-badge');
+  // Badge inside the item
+  const badge = $('.product-badge', article);
   if (!badge) return;
 
   const qty = CART[id] || 0;
 
+  // Hide badge if qty = 0
   if (!qty) {
-    badge.hidden = true;        
-  } else {
-    badge.hidden = false;         
-    badge.textContent = qty > 9 ? '9+' : qty;
+    badge.hidden = true;
+    return;
   }
+
+  // Show qty (cap at "9+")
+  badge.hidden = false;
+  badge.textContent = qty > 9 ? '9+' : qty;
 }
 
 function updateAllProductBadges() {
-  for (const id in CART) {
-    updateProductBadge(id);
-  }
+  for (const id in CART) updateProductBadge(id);
 }
 
 
-// --- Cart-Setup direct execute (script at the end of <body>) ---
+// --- Setup: Cart Elements & Buttons ----------------------------------------
 
-const cartPanel = document.getElementById('cart-panel');
-const cartButton = document.getElementById('cart-button');
-const closeCartButton = document.getElementById('close-cart');
+const cartPanel = $('#cart-panel');
+const cartButton = $('#cart-button');
+const closeCartButton = $('#close-cart');
+const payButton = $('#pay');
 
-// --- Pay-Button Set-up ---
-const payButton = document.getElementById('pay');
-
-
-// Start: Cart closed
+// Ensure cart is initially closed
 if (cartPanel && !cartPanel.classList.contains('cart-is-closed')) {
   cartPanel.classList.add('cart-is-closed');
 }
 
-if (cartButton) {
-  cartButton.addEventListener('click', openCart);
-}
+// Bind UI interactions
+if (cartButton) cartButton.addEventListener('click', openCart);
+if (closeCartButton) closeCartButton.addEventListener('click', closeCart);
+if (payButton) payButton.addEventListener('click', payForOrder);
 
-if (closeCartButton) {
-  closeCartButton.addEventListener('click', closeCart);
-}
 
-if (payButton) {
-  payButton.addEventListener('click', payForOrder)
-}
-//
+// Expose for debugging during development
 window.CART = CART;
 window.renderCart = renderCart;
 window.openCart = openCart;
