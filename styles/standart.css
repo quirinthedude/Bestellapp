@@ -8,8 +8,8 @@
 
 html,
 body {
-  height: 100%;
-  max-width: 1920px;
+  margin: 0;
+  max-width: none;
 }
 
 html {
@@ -54,6 +54,12 @@ body {
   background: var(--bg);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: var(--max);
+  margin: auto;
+  width: 100%;
 }
 
 input,

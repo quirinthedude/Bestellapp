@@ -16,6 +16,17 @@ ul {
 }
 
 footer {
-  margin-top: 32px;
-  padding: 16px 0;
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid var(--border);     
+  box-shadow: 0 -6px 18px -18px rgba(0,0,0,.35);
+}
+
+.footer-wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 16px var(--pad);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
